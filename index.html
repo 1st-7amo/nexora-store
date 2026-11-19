@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080411">
+  <meta name="description" content="NEXORA — premium digital script marketplace.">
+  <title>NEXORA — Digital Script Market</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="site-header" aria-label="NEXORA main navigation">
+    <a class="brand-lockup" href="#home" aria-label="NEXORA home">
+      <img src="assets/nexora-emblem.png" alt="" class="brand-emblem">
+      <span class="brand-copy"><strong>NEXORA</strong><small>DIGITAL SCRIPT MARKET</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="active" href="#home"><span>⌂</span> Home</a>
+      <a href="#store"><span>◇</span> Scripts</a>
+      <a href="#about"><span>◈</span> About</a>
+      <a href="#support"><span>◎</span> Support</a>
+      <button id="openOwner" class="nav-login" type="button"><span>♙</span> Login</button>
+    </nav>
+    <a class="header-discord" href="https://discord.gg/HTvGpD3dX" target="_blank" rel="noopener noreferrer">JOIN DISCORD <span>↗</span></a>
+  </header>
+
+  <main id="home">
+    <section class="store-section" id="store">
+      <div class="section-heading"><div><div class="eyebrow">THE COLLECTION</div><h1>Explore <span>Scripts</span></h1></div><div class="count" id="productCount">0 SCRIPTS</div></div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="empty-state" id="emptyState" hidden><div class="empty-icon">✧</div><h3>No scripts available yet</h3><p>The collection is being prepared. Check back soon.</p></div>
+    </section>
+    <section class="how-section" id="about">
+      <div class="eyebrow">THE NEXORA DIFFERENCE</div>
+      <h2>More than just <span>a script</span></h2>
+      <p class="about-copy">A straightforward place to discover digital tools, compare your options, and get help directly before placing an order.</p>
+      <div class="steps" id="support">
+        <article><b>✦</b><h3>Made to be explored</h3><p>Browse the collection and check each script’s preview and listed price before you decide.</p></article>
+        <article><b>↗</b><h3>Simple ordering</h3><p>Choose the script you want and send its details to NEXORA in a ready-to-go WhatsApp message.</p></article>
+        <article><b>◈</b><h3>Direct assistance</h3><p>Have a question first? Contact the store directly and confirm the details before ordering.</p></article>
+      </div>
+      <div class="about-cta"><div><strong>Find the right tool for your setup.</strong><span>Explore the NEXORA collection.</span></div><a class="primary-btn" href="#store">EXPLORE SCRIPTS <span>↗</span></a></div>
+    </section>
+    <section class="discord-section" aria-labelledby="discord-title">
+      <div class="discord-orb" aria-hidden="true">◈</div>
+      <div class="discord-copy"><div class="eyebrow">THE NEXORA COMMUNITY</div><h2 id="discord-title">Stay in the <span>loop.</span></h2><p>Join our Discord for support, updates, and help with your scripts.</p></div>
+      <a class="discord-cta" href="https://discord.gg/HTvGpD3dX" target="_blank" rel="noopener noreferrer">JOIN OUR DISCORD <span>↗</span></a>
+    </section>
+  </main>
+  <a class="discord-float" href="https://discord.gg/HTvGpD3dX" target="_blank" rel="noopener noreferrer" aria-label="Join NEXORA Discord"><span class="discord-mark">◈</span><span>JOIN DISCORD</span></a>
+  <footer><div class="footer-brand">NEX<span>ORA</span><small>DIGITAL SCRIPT MARKET</small></div><p>© <span id="year"></span> NEXORA. All rights reserved.</p></footer>
+
+  <div class="modal-backdrop" id="ownerModal" hidden>
+    <section class="owner-modal">
+      <button class="close-modal" id="closeOwner" aria-label="Close">×</button>
+      <div id="loginView">
+        <div class="eyebrow">RESTRICTED ACCESS</div><h2>Owner <span>Login</span></h2>
+        <p class="muted">Sign in with your Supabase owner account.</p>
+        <form id="loginForm">
+          <label>OWNER EMAIL<input id="ownerEmail" type="email" placeholder="you@example.com" autocomplete="username" required></label>
+          <label>PASSWORD<input id="ownerPassword" type="password" placeholder="Enter password" autocomplete="current-password" required></label>
+          <button class="primary-btn full" type="submit" id="loginButton">OPEN DASHBOARD ↗</button><p class="form-error" id="loginError"></p>
+        </form>
+      </div>
+      <div id="dashboardView" hidden>
+        <div class="dashboard-head"><div><div class="eyebrow">NEXORA CONTROL CENTER</div><h2>Admin <span>Dashboard</span></h2></div><button class="subtle-btn" id="logout">LOG OUT</button></div>
+        <div class="dashboard-stats"><div><small>TOTAL SCRIPTS</small><strong id="dashCount">0</strong></div><div><small>STORE STATUS</small><strong class="online">● LIVE</strong></div></div>
+        <form id="productForm" class="product-form">
+          <h3 id="formTitle">Add a new script</h3><input type="hidden" id="editId">
+          <div class="form-grid">
+            <label>SCRIPT NAME<input id="scriptName" maxlength="60" placeholder="e.g. Premium Cavebot" required></label>
+            <label>PRICE<input id="scriptPrice" type="number" min="0" step="0.01" placeholder="100" required></label>
+            <label class="wide">GIF IMAGE URL<input id="scriptGif" type="url" placeholder="https://example.com/preview.gif"></label>
+            <label>DISPLAY ORDER<input id="scriptOrder" type="number" step="1" value="1"></label>
+          </div>
+          <div class="form-actions"><button class="primary-btn" type="submit" id="saveProduct">SAVE SCRIPT +</button><button class="subtle-btn" type="button" id="cancelEdit" hidden>CANCEL</button></div>
+          <p class="form-note">Products are saved to the shared online database and appear for every visitor.</p>
+        </form>
+        <div class="manage-list"><h3>Product inventory</h3><div id="manageProducts"></div></div>
+        <div class="security-note">Owner access is checked by Supabase Auth and database Row Level Security. Never put a service-role key in this website.</div>
+      </div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
